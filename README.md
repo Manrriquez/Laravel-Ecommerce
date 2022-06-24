@@ -1,11 +1,8 @@
 # Laravel Ecommerce
 
-<center>Status: `EM ANDAMENTO`</center>
+###  🕖 STATUS: `em andamento`
 
-
-## 🚀 Instalando Laravel Ecommerce
-
-Para instalar o projeto, siga estas etapas:
+ 🚀 Para instalar o projeto, siga estas etapas:
 
 1. clone repo
 2. `composer install`
