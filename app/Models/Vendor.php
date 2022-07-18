@@ -9,3 +9,4 @@ class Vendor extends Model
 {
     use HasFactory;
 }
+  

@@ -28,9 +28,20 @@ require __DIR__.'/auth.php';
 Route::prefix('/admin')->group(function() {
 
     Route::match(['get', 'post'], '/login', [App\Http\Controllers\Admin\AdminController::class, 'login'])->name('admin.login');
+    Route::match(['get', 'post'], '/updateAdminPassword', [App\Http\Controllers\Admin\AdminController::class, 'updateAdminPassword']);
 
-    Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('/checkAdminPassword', [App\Http\Controllers\Admin\AdminController::class, 'checkAdminPassword']);
+
+    Route::middleware(['admin'])->group(function () {
+
+        Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+
+        Route::get('/logout', [App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('admin');
+        
+    });
 
 });
+
 
 
