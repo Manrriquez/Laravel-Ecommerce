@@ -1,6 +1,6 @@
 # Laravel Ecommerce
 
-###  🕖 STATUS: `em andamento`
+### `Em andamento`
 
  🚀 Para instalar o projeto, siga estas etapas:
 
