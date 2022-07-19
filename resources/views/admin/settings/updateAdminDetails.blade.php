@@ -53,32 +53,51 @@
                             </div>
 
                       @endif
+                      
+                      @if($errors->any())
 
-                    <form class="forms-sample" action="{{ url('admin/updateAdminPassword') }} method="post">
+                          <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+                                    @foreach ($errors->all as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                          </div>
+
+                      @endif
+
+                    <form class="forms-sample" action="{{ url('admin/updateAdminDetails') }} method="post">
                         @csrf
                         <div class="form-group">
                             <label >E-mail</label>
-                            <input type="text" class="form-control" value="{{ $adminDetails['email'] }}" readonly="">
+                            <input type="text" class="form-control" value="{{ Auth::guard('admin')->user()->email }}" readonly="">
                         </div>
 
                         <div class="form-group">
                             <label>Tipo</label>
-                            <input type="text" class="form-control" value="{{ $adminDetails['type'] }}" readonly="">
+                            <input type="text" class="form-control" value="{{ Auth::guard('admin')->user()->password }}" readonly="">
                         </div>
 
                         <div class="form-group">
-                            <label >Atual Senha</label>
-                            <input type="password" name="current_name" id="current_name" class="form-control" placeholder="Password" value="{{ $adminDetails['password'] }}" readonly="">
-                            <span id="check_password"></span>
+                            <label for="admin_name">Nome</label>
+                            <input type="type" class="form-control" id="admin_name" placeholder="Password" value="{{ Auth::guard('admin')->user()->name }}"  readonly="">
                         </div>
                         <div class="form-group">
-                            <label >Senha nova</label>
-                            <input id="new_password" name="new_password" class="form-control" placeholder="Password" required>
+                            <label for="admin_mobile">Celular</label>
+                            <input type="text" name="admin_mobile" id="admin_mobile" class="form-control" placeholder="(11) 93229-5240" value="{{ Auth::guard('admin')->user()->mobile }}" required maxlength="15" minlength="10">
                         </div>
-                        <div class="form-group">
-                            <label >Confirmar Senha</label>
-                            <input type="password" name="confirm_Password" id="confirm_password" class="form-control" placeholder="Password" required>
-                        </div>
+                        
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
                         <button class="btn btn-light">Cancel</button>
                     </form>

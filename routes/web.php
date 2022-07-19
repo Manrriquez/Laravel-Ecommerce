@@ -27,15 +27,21 @@ require __DIR__.'/auth.php';
 
 Route::prefix('/admin')->group(function() {
 
+    //ADMIN LOGIN ROUTE
     Route::match(['get', 'post'], '/login', [App\Http\Controllers\Admin\AdminController::class, 'login'])->name('admin.login');
-    Route::match(['get', 'post'], '/updateAdminPassword', [App\Http\Controllers\Admin\AdminController::class, 'updateAdminPassword']);
-
-    Route::post('/checkAdminPassword', [App\Http\Controllers\Admin\AdminController::class, 'checkAdminPassword']);
-
     Route::middleware(['admin'])->group(function () {
 
+        //DASHBOARD ROUTE
         Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+        //ATUALIZAR SENHA DO ADMIN ROUTE
+        Route::match(['get', 'post'], '/updateAdminPassword', [App\Http\Controllers\Admin\AdminController::class, 'updateAdminPassword']);
+
+        //CHECAR SENHA DO ADMIN ROUTE
+        Route::post('/checkAdminPassword', [App\Http\Controllers\Admin\AdminController::class, 'checkAdminPassword']);
+
+        //CHECAR DETALHES DO ADMIN
+        Route::match(['get', 'post'], 'updateAdminDetails', [App\Http\Controllers\Admin\AdminController::class, 'updateAdminPassword']);
 
         Route::get('/logout', [App\Http\Controllers\Admin\AdminController::class, 'logout'])->name('admin');
         
